@@ -162,3 +162,67 @@ func (<name>Controller *<name>Controller) Delete<name>(c *fiber.Ctx) error {
 
 	return c.JSON(<name>_serializers.New<name>SerializerFrom<name>(<name>))
 }
+
+-> genera un struct que se llame Instrument con los siguientes campos
+---
+ID,
+Name
+---
+
+-> Genera un struct con el siguiente template con y los campos
+
+
+type NameStructSerializer struct {
+	ID          uuid.UUID              `json:"id"`
+	...
+	CreatedAt time.Time `json:"createdAt"`
+}
+
+func NewNameStructSerializerName(gr group_mate_domain.NameStruct) *NameStructSerializer {
+	return &NameStructSerializer{
+		ID:       gr.ID,
+		Name:     gr.Name,
+	}
+}
+
+func NewNameStructSerializerNameList(
+	grs []group_mate_domain.NameStruct,
+) []NameStructSerializer {
+	NameStructSerializerList := make([]NameStructSerializer, 0, len(grs))
+
+	for _, gr := range grs {
+		NameStructSerializerList = append(
+			NameStructSerializerList,
+			*NewNameStructSerializerName(gr),
+		)
+	}
+
+	return nameStructSerializerList
+}
+
+
+-> generar un struct y una función con el siguiente template
+
+type GroupMateParams struct {
+	...
+	Name        string                                  `json:"name"`
+}
+
+func getParamsNameStruct(c *fiber.Ctx) (group_mate_domain.NameStruct, error) {
+	var NameStructParams NameStructParams
+	if err := c.BodyParser(&NameStructParams); err != nil {
+		return group_mate_domain.NameStruct{}, err
+	}
+
+	utilities.PrintJson(NameStructParams)
+
+	fmt.Println(NameStructParams)
+
+	return group_mate_domain.NameStcut{
+		Name:        NameStructParams.Name,
+		URLImage:    NameStructParams.URLImage,
+		Instruments: NameStructParams.Instruments,
+	}, nil
+}
+
+donde dice name struct por el nombre instrument
