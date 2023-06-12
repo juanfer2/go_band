@@ -1,5 +1,3 @@
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
 BEGIN;
   CREATE TABLE group_mate_instruments (
     -- id SERIAL

@@ -1,10 +1,11 @@
 BEGIN;
-  CREATE TABLE group_mates (
+  CREATE TABLE songs (
     -- id SERIAL
     id uuid DEFAULT uuid_generate_v4 ()
     --
-    ,name VARCHAR ( 255 ) UNIQUE
-    ,url_image  text
+    ,name text
+    ,url text
+    ,tone VARCHAR ( 255 )
     --
     ,created_at timestamptz  NOT NULL  DEFAULT current_timestamp
     ,updated_at timestamptz  NOT NULL  DEFAULT current_timestamp
@@ -14,6 +15,6 @@ BEGIN;
     ,PRIMARY KEY (id)
   );
 
-  CREATE INDEX "idx_group_mates_deleted_at" ON "group_mates" ("deleted_at");
-  CREATE INDEX "idx_group_mates_name" ON "group_mates" ("name");
+  CREATE INDEX "idx_songs_deleted_at" ON "songs" ("deleted_at");
+  CREATE INDEX "idx_songs_name" ON "songs" ("name");
 COMMIT;

@@ -8,8 +8,10 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	group_mate_routes "github.com/juanfer2/whorship_band/src/group_mates/infrastructure/routes"
 	instrument_routes "github.com/juanfer2/whorship_band/src/instruments/infrastructure/routes"
+	performances_routes "github.com/juanfer2/whorship_band/src/performances/infrastructure/routes"
 	"github.com/juanfer2/whorship_band/src/shared/infrastructure/routes"
 	"github.com/juanfer2/whorship_band/src/shared/utilities"
+	songs_routes "github.com/juanfer2/whorship_band/src/songs/infrastructure/routes"
 )
 
 func StartServerApp() {
@@ -30,6 +32,8 @@ func StartServerApp() {
 	routes.SetupRoutes(app)
 	group_mate_routes.SetupRoutes(app)
 	instrument_routes.SetupRoutes(app)
+	songs_routes.SetupRoutes(app)
+	performances_routes.SetupRoutes(app)
 
 	app.Listen(PORT)
 }

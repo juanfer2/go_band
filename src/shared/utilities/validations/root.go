@@ -15,10 +15,10 @@ type Validator interface {
 
 // Returns validator struct corresponding to validation type
 func getValidatorFromTag(tag string) Validator {
-	fmt.Println("   tag")
-	fmt.Println("    ", tag)
 	args := strings.Split(tag, ",")
 	switch args[0] {
+	case "require":
+		return RequireValidator{}
 	case "number":
 		validator := NumberValidator{}
 		fmt.Sscanf(strings.Join(args[1:], ","), "min=%d,max=%d", &validator.Min, &validator.Max)
@@ -29,6 +29,8 @@ func getValidatorFromTag(tag string) Validator {
 		return validator
 	case "email":
 		return EmailValidator{}
+	case "date":
+		return DateValidator{}
 	case "regex":
 		validator := RegexValidation{}
 		fmt.Sscanf(strings.Join(args[1:], ","), "expression=%s", &validator.Expression)
@@ -46,11 +48,6 @@ func ValidateStruct(s interface{}) []error {
 		// Get the field tag value
 		tag := v.Type().Field(i).Tag.Get(tagName)
 
-		fmt.Println("=========tag===============")
-		fmt.Println(v)
-		fmt.Println(tag)
-		fmt.Println(tagName)
-		fmt.Println(v.Type().Field(i).Tag.Get(tagName))
 		// Skip if tag is not defined or ignored
 		if tag == "" || tag == "-" {
 			continue

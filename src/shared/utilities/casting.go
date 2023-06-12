@@ -42,3 +42,13 @@ func TypeConverter[R any](data any) (*R, error) {
 	}
 	return &result, err
 }
+
+func StringToDate(stringDate string) (time.Time, error) {
+	date, dateErr := time.Parse("2006-01-02", stringDate)
+
+	if dateErr != nil {
+		return date, dateErr
+	}
+
+	return date, nil
+}

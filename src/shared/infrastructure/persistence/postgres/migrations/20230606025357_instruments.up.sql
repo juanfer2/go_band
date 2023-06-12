@@ -1,5 +1,3 @@
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
 BEGIN;
   CREATE TABLE instruments (
     -- id SERIAL

@@ -1,10 +1,7 @@
 package group_mate_application
 
 import (
-	"fmt"
-
 	group_mate_domain "github.com/juanfer2/whorship_band/src/group_mates/domain"
-	"github.com/juanfer2/whorship_band/src/shared/utilities"
 )
 
 type GroupMateUseCase struct {
@@ -12,20 +9,18 @@ type GroupMateUseCase struct {
 }
 
 func NewGroupMateUseCase(
-	Repository group_mate_domain.GroupMateRepository,
+	repository group_mate_domain.GroupMateRepository,
 ) *GroupMateUseCase {
-	return &GroupMateUseCase{repository: Repository}
+	return &GroupMateUseCase{repository: repository}
 }
 
 func (uc *GroupMateUseCase) FindByUuid(id string) []group_mate_domain.GroupMate {
-	fmt.Println("search")
 	return uc.repository.FindByUuidWithInstruments(id)
 }
 
 func (uc *GroupMateUseCase) Create(
 	groupMate group_mate_domain.GroupMate,
 ) (group_mate_domain.GroupMate, error) {
-	utilities.PrintJson(groupMate.Instruments)
 	newGroupMate, err := uc.repository.Create(groupMate)
 
 	return newGroupMate, err
