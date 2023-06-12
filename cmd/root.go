@@ -47,7 +47,7 @@ func init() {
 	// .Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	//products_cmd.PersonaSeedCmd,
 	//grpcCmd,
-	rootCmd.AddCommand(serverCmd, serverGrpcCmd, buildCmd, migrateCmd, cleanBuildCmd, testCmd,
+	rootCmd.AddCommand(serverCmd, serverGrpcCmd, serverGraphqlCmd, buildCmd, migrateCmd, cleanBuildCmd, testCmd,
 		createDatBaseCmd, merchantCmd, pyamentTestPSECmd, pyamentTestCreditCardCmd,
 		tokenizeCreditCardCmd, tokenizeNequiCmd, wompi_cmd.PaymentCmd)
 }
